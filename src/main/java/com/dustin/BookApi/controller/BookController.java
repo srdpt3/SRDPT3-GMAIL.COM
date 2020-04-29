@@ -2,18 +2,20 @@ package com.dustin.BookApi.controller;
 
 import com.dustin.BookApi.model.Book;
 import com.dustin.BookApi.service.BookService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController
+@RestController
 public class BookController {
 
    @Autowired
     private KafkaTemplate<String, Object> template;
+
+//    @Autowired
+//    private RepositoryConfig template;
 
     private String topic = "dustin";
     @Autowired
@@ -39,27 +41,19 @@ public class BookController {
         return service.getProductById(id);
     }
 
-//    @GetMapping("/product/{name}")
-//    public Book findProductByName(@PathVariable String name) {
-//        return service.getProductByName(name);
-//    }
 
-//    @PutMapping("/update")
-//    public Book updateProduct(@RequestBody Book product) {
-//        return service.updateProduct(product);
-//    }
 
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable int id) {
         return service.deleteProduct(id);
     }
 
-    // KAFKA
-    @GetMapping("/publish/product/{name}")
-    public String publishMessage(@PathVariable int name) {
-        template.send(topic, "Publish product "+ name);
-        return "Message got published";
-    }
+//    // KAFKA
+//    @GetMapping("/publish/product/{name}")
+//    public String publishMessage(@PathVariable int name) {
+//        template.send(topic, "Publish product "+ name);
+//        return "Message got published";
+//    }
 
 
 //    @GetMapping("/publishJson")
