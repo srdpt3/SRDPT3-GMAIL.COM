@@ -1,21 +1,43 @@
 package com.dustin.BookApi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "tbl_book")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+import java.util.Date;
 
+@Entity
+@Table(name="tbl_book")
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String sku;
+
+    private String name;
+
+    private String description;
+
+    @Column(name = "unit_price")
+    private BigDecimal unitPrice;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    private boolean active;
+
+    @Column(name = "units_in_stock")
+    private int unitsInStock;
+
+    @Column(name = "date_created")
+    private Date createdOn;
+
+    @Column(name = "last_updated")
+    private Date updatedOn;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private BookCategory category;
 
     public Long getId() {
         return id;
@@ -105,37 +127,11 @@ public class Book {
         this.category = category;
     }
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-
-    private String sku;
-
-    private String name;
-
-    private String description;
-
-    @Column(name="unit_price")
-    private BigDecimal unitPrice;
-
-    @Column(name="image_url")
-    private String imageUrl;
-
-    private boolean active;
-
-    @Column(name="units_in_stock")
-    private int unitsInStock;
-
-    @Column(name="date_created")
-    private Date createdOn;
-
-    @Column(name="last_updated")
-    private Date updatedOn;
-
-    @ManyToOne
-    @JoinColumn(name="category_id", nullable=false)
-    @JsonIgnoreProperties(value = {"category_id"})
-    private BookCategory category;
-
+    @Override
+    public String toString() {
+        return "Book [id=" + id + ", sku=" + sku + ", name=" + name + ", description=" + description + ", unitPrice="
+                + unitPrice + ", imageUrl=" + imageUrl + ", active=" + active + ", unitsInStock=" + unitsInStock
+                + ", createdOn=" + createdOn + ", updatedOn=" + updatedOn + ", category=" + category + "]";
+    }
 
 }

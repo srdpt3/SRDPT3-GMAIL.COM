@@ -2,10 +2,9 @@ package com.dustin.BookApi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.duyang.spring.repositoriy")
+//@ComponentScan("com.duyang.spring.repositoriy")
 public class BookApiApplication {
 
 

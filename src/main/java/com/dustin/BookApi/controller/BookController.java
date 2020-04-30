@@ -3,7 +3,6 @@ package com.dustin.BookApi.controller;
 import com.dustin.BookApi.model.Book;
 import com.dustin.BookApi.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +10,8 @@ import java.util.List;
 @RestController
 public class BookController {
 
-   @Autowired
-    private KafkaTemplate<String, Object> template;
+//   @Autowired
+//    private KafkaTemplate<String, Object> template;
 
 //    @Autowired
 //    private RepositoryConfig template;
